@@ -2,6 +2,7 @@ package com.example.firstproject.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -9,6 +10,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Entity
+@Getter
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +22,10 @@ public class Article {
     @Column
     private String content;
 
-    public Long getId() {
-        return id;
+    public void patch(Article article) {
+        if (article.title != null)
+            this.title = article.title;
+        if (article.content != null)
+            this.content = article.content;
     }
 }
